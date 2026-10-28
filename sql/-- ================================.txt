@@ -1,0 +1,36 @@
+-- ============================================
+-- Bank Fraud Detection Analytics — SQL Queries
+-- ============================================
+
+-- Query 1: Overall fraud rate and risk summary
+SELECT 
+    COUNT(*) AS total_transactions,
+    SUM(fraud_risk_score) AS total_risk_points,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE fraud_risk_score >= 1) / COUNT(*), 2) AS suspicious_rate_percent
+FROM transactions;
+
+
+-- Query 2: Highest-risk accounts
+SELECT 
+    accountid,
+    COUNT(*) AS total_transactions,
+    SUM(fraud_risk_score) AS total_risk_score,
+    ROUND(AVG(transactionamount), 2) AS avg_amount
+FROM transactions
+GROUP BY accountid
+HAVING SUM(fraud_risk_score) > 0
+ORDER BY total_risk_score DESC
+LIMIT 10;
+
+
+-- Query 3: Highest-risk merchants (filtered for minimum volume to avoid small-sample bias)
+SELECT 
+    merchantid,
+    COUNT(*) AS total_transactions,
+    SUM(fraud_risk_score) AS total_risk_score,
+    ROUND(100.0 * COUNT(*) FILTER (WHERE fraud_risk_score >= 1) / COUNT(*), 2) AS suspicious_rate_percent
+FROM transactions
+GROUP BY merchantid
+HAVING COUNT(*) >= 10
+ORDER BY suspicious_rate_percent DESC
+LIMIT 10;
