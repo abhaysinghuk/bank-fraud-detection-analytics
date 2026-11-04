@@ -1,0 +1,7 @@
+customer_id,name,city,account_type,credit_score,balance,risk_score,risk_label,velocity_flag,large_txn_flag,odd_hour_flag,multi_city_flag,txns,fraud_txns
+CUST-03709,Deepa Joshi,Chandigarh,Salary,824,398743.21,35.0,High,0,0,1,0,2,1
+CUST-01031,Sanjay Bose,Mumbai,Current,844,66957.34,29.29,High,0,0,1,1,7,2
+CUST-01928,Ravi Bose,Vadodara,Savings,652,294816.15,28.33,High,0,1,0,1,12,2
+CUST-04950,Nirmala Verma,Lucknow,Current,613,30978.46,27.14,High,0,1,0,1,7,1
+CUST-01052,Saroj Patel,Vadodara,Current,689,408462.86,26.25,High,0,1,0,1,8,1
+CUST-00463,Tara Bose,Nagpur,Savings,453,443698.8,25.56,High,0,1,0,1,9,1
